@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <color name="colorAccent" tools:ignore="MissingDefaultResource">#03DAC5</color>
-    <color name="newerposts" tools:ignore="MissingDefaultResource">#5d99c6</color>
-    <color name="newerpoststext" tools:ignore="MissingDefaultResource">#FFFFFF</color>
-    <color name="divider_color" tools:ignore="MissingDefaultResource">#ccc</color>
-    <color name="image_background" tools:ignore="MissingDefaultResource">#000</color>
+<resources>
+
 </resources>
