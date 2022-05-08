@@ -61,5 +61,4 @@ class PostViewModel : ViewModel (),OnPostInteractionListener{
     override fun onViewListener(post: Post) {
         repository.viewersById(post.id)
     }
-
 }
