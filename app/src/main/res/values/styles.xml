@@ -10,6 +10,7 @@
     </style>
     <style name="Widget.AppTheme.LikeButton" parent="Widget.MaterialComponents.Button.TextButton.Icon">
         <item name="backgroundTint">@android:color/transparent</item>
+        <item name="iconTint">@color/like_checkbox_tint</item>
         <item name="rippleColor">@android:color/transparent</item>
         <item name="android:textColor">?attr/colorControlNormal</item>
         <item name="android:minWidth">@dimen/icon_button_min_size</item>
@@ -24,4 +25,5 @@
         <item name="android:minWidth">@dimen/icon_button_min_size</item>
         <item name="android:minHeight">@dimen/icon_button_min_size</item>
     </style>
+
 </resources>
