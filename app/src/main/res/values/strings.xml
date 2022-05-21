@@ -16,5 +16,10 @@
     <string name="cancel_image" translatable="false" />
     <string name="edit_image" translatable="false" />
     <string name="empty_post_error">Empty post error</string>
-    <string name="icon_save" translatable="false" />>
+    <string name="icon_save" translatable="false" />
+    <string name="chooser_share_post">Share post</string>
+    <string name="Save">Save</string>
+    <string name="addPost">Add Post</string>
+    <string name="more">More</string>
+    <string name="video_link">video_link</string>>
 </resources>

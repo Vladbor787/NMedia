@@ -8,4 +8,6 @@ interface OnPostInteractionListener {
     fun onLikeListener(post: Post)
     fun onShareListener(post: Post)
     fun onViewListener(post: Post)
+    fun onPlayVideoListener(post: Post)
+
 }

@@ -1,54 +1,62 @@
 package ru.netology.nmedia.adapters
 
-import androidx.appcompat.widget.PopupMenu
+import android.view.View.VISIBLE
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.model.Post
 import ru.netology.nmedia.model.util.formatCounts
 
-class PostViewHolder (
-    private val binding :CardPostBinding,
+class PostViewHolder(
+    private val binding: CardPostBinding,
     private val listener: OnPostInteractionListener
-): RecyclerView.ViewHolder(binding.root){
-    fun bind (post: Post){
-        binding.apply {
-            author.text = post.author
-            published.text = post.published
-            content.text = post.content
-            like.setIconResource(
-                if (post.likedByMe) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_like_24
-            )
-            like.setOnClickListener {
-                listener.onLikeListener(post)
-            }
-            share.setOnClickListener {
-                listener.onShareListener(post)
-            }
-            viewers.setOnClickListener {
-                listener.onViewListener(post)
-            }
-            like.text = formatCounts(post.countLike)
-            share.text = formatCounts(post.countShare)
-            viewers.text = formatCounts(post.countView)
-            menu.setOnClickListener {
-                PopupMenu(it.context, it).apply {
-                    inflate(R.menu.options_menu)
-                    setOnMenuItemClickListener { item ->
-                        when (item.itemId) {
-                            R.id.remove -> {
-                                listener.onRemoveListener(post)
-                                true
-                            }
-                            R.id.edit -> {
-                                listener.onEditListener(post)
-                                true
-                            }
-                            else -> false
-                        }
+) : RecyclerView.ViewHolder(binding.root) {
+    private lateinit var post: Post
+    private val popupMenu by lazy {
+        android.widget.PopupMenu(itemView.context, binding.menu).apply {
+            inflate(R.menu.options_menu)
+            setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.remove -> {
+                        listener.onRemoveListener(post)
+                        true
                     }
-                }.show()
+                    R.id.edit -> {
+                        listener.onEditListener(post)
+                        true
+                    }
+                    else -> false
+                }
+
             }
         }
+    }
+
+    init {
+        binding.like.setOnClickListener { listener.onLikeListener(post) }
+        binding.share.setOnClickListener { listener.onShareListener(post) }
+        binding.buttonPlay.setOnClickListener { listener.onPlayVideoListener(post) }
+        binding.videoLink.setOnClickListener { listener.onPlayVideoListener(post) }
+    }
+
+    fun bind(post: Post) {
+        this.post = post
+
+        with(binding) {
+            author.text = post.author
+            content.text = post.content
+            published.text = post.published
+            like.text = formatCounts(post.likes.countLike)
+            viewers.text = formatCounts(post.countView)
+            share.text = formatCounts(post.countShare)
+            like.isChecked = post.likes.likedByMe
+            menu.setOnClickListener { popupMenu.show() }
+            if (post.videoLink != null) {
+                videoLink.setImageResource(R.drawable.background1)
+                videoPreview.visibility = VISIBLE
+            }
+
+        }
+
     }
 }
