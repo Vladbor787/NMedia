@@ -1,6 +1,6 @@
 package ru.netology.nmedia.adapters
 
-import ru.netology.nmedia.model.Post
+import ru.netology.nmedia.dto.Post
 
 interface OnPostInteractionListener {
     fun onEditListener(post: Post)

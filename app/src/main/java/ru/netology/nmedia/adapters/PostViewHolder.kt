@@ -4,7 +4,7 @@ import android.view.View.VISIBLE
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.CardPostBinding
-import ru.netology.nmedia.model.Post
+import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.model.util.formatCounts
 
 class PostViewHolder(
@@ -35,6 +35,7 @@ class PostViewHolder(
     init {
         binding.like.setOnClickListener { listener.onLikeListener(post) }
         binding.share.setOnClickListener { listener.onShareListener(post) }
+        binding.viewers.setOnClickListener { listener.onViewListener(post) }
         binding.buttonPlay.setOnClickListener { listener.onPlayVideoListener(post) }
         binding.videoLink.setOnClickListener { listener.onPlayVideoListener(post) }
     }
@@ -46,10 +47,10 @@ class PostViewHolder(
             author.text = post.author
             content.text = post.content
             published.text = post.published
-            like.text = formatCounts(post.likes.countLike)
+            like.text = formatCounts(post.likes)
             viewers.text = formatCounts(post.countView)
             share.text = formatCounts(post.countShare)
-            like.isChecked = post.likes.likedByMe
+            like.isChecked = post.likedByMe
             menu.setOnClickListener { popupMenu.show() }
             if (post.videoLink != null) {
                 videoLink.setImageResource(R.drawable.background1)

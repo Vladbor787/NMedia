@@ -1,9 +1,9 @@
 package ru.netology.nmedia.repository
 
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import ru.netology.nmedia.model.Likes
-import ru.netology.nmedia.model.Post
+import ru.netology.nmedia.dto.Post
 
 
 class PostRepositoryInMemoryImpl: PostRepository {
@@ -13,35 +13,29 @@ class PostRepositoryInMemoryImpl: PostRepository {
             "Data value should not be null"
         }
 
-    override val data = MutableLiveData(List(GENERATED_POSTS_AMOUNT) { index ->
+    private val data = MutableLiveData(List(GENERATED_POSTS_AMOUNT) { index ->
         Post(
             id = index + 1L,
             author = "Автор",
-           content = "Текст поста $index",
+            content = "Текст поста $index",
             published = "Дата поста $index",
-            likes = Likes(countLike = 0, likedByMe = false),
+            likes = index+100,
+            likedByMe = false,
             countShare = 0,
             countView = 0,
             videoLink = "https://youtu.be/Ed0Xdi_xdfw"
         )
     })
 
-    override fun likeById(id: Long) {
+    override fun getAll(): LiveData<List<Post>> = data
 
-        data.value = posts.map {
-            if (it.id != id) it else {
-                val currentLikes = checkNotNull(it.likes) {
-                    "Data value should not be null"
-                }
-                val userLikes = !currentLikes.likedByMe
-                val count: Int = if (userLikes) {
-                    currentLikes.countLike + 1
-                } else {
-                    currentLikes.countLike - 1
-                }
-                val likes = currentLikes.copy(likedByMe = userLikes, countLike = count)
-                it.copy(likes = likes)
-            }
+    override fun likeById(id: Long) {
+        data.value = data.value?.map {
+            if (it.id == id) it.copy(
+                likedByMe = !it.likedByMe,
+                likes =  if (it.likedByMe) it.likes.dec() else it.likes.inc()
+            )
+            else it
         }
     }
 
@@ -73,6 +67,10 @@ class PostRepositoryInMemoryImpl: PostRepository {
         data.value = data.value?.map {
             it.copy(content = it.content)
         }
+    }
+
+    override fun isVideo(post: Post): Boolean {
+        return (!post.videoLink.isNullOrEmpty())
     }
     private companion object {
         const val GENERATED_POSTS_AMOUNT = 10
