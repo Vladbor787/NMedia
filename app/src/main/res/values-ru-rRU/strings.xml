@@ -10,4 +10,9 @@
     <string name="menu_edit">Редактировать</string>
     <string name="edit_text">Редактировать</string>
     <string name="empty_post_error" />
+    <string name="chooser_share_post">Поделиться</string>
+    <string name="Save">Сохранить</string>
+    <string name="addPost">Добавить пост</string>
+    <string name="more">More</string>
+    <string name="video_link">Ссылка на видеоk</string>>
 </resources>

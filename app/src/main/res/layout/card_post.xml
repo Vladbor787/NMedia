@@ -75,8 +75,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/barrier" />
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/videoPreview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        />
 
-    <androidx.constraintlayout.widget.Barrier
+    <ImageView
+        android:id="@+id/videoLink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/video_link"
+        app:layout_constraintBottom_toBottomOf="@+id/barrier2"
+        app:layout_constraintTop_toBottomOf="@+id/content"
+        tools:layout_editor_absoluteX="16dp"
+        tools:srcCompat="@drawable/background1"/>
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/buttonPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_play_circle_filled_24"
+
+        app:layout_constraintBottom_toBottomOf="@+id/videoLink"
+        app:layout_constraintEnd_toEndOf="@+id/videoLink"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/content" />
+     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -123,4 +149,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/barrier2"
         tools:text="100" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
