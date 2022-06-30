@@ -38,6 +38,8 @@ class PostViewHolder(
         binding.viewers.setOnClickListener { listener.onViewListener(post) }
         binding.buttonPlay.setOnClickListener { listener.onPlayVideoListener(post) }
         binding.videoLink.setOnClickListener { listener.onPlayVideoListener(post) }
+        binding.videoLink.setOnClickListener { listener.onPostListener(post) }
+
     }
 
     fun bind(post: Post) {

@@ -15,7 +15,9 @@ import ru.netology.nmedia.adapters.OnPostInteractionListener
 import ru.netology.nmedia.adapters.PostAdapter
 import ru.netology.nmedia.databinding.FragmentFeedBinding
 import ru.netology.nmedia.dto.Post
+import ru.netology.nmedia.model.util.CompanionArg.Companion.longArg
 import ru.netology.nmedia.viewmodel.PostViewModel
+
 
 class FeedFragment : Fragment() {
 
@@ -45,6 +47,14 @@ class FeedFragment : Fragment() {
                     viewModel.removeById(post.id)
                 }
 
+                override fun onPostListener(post: Post) {
+                    findNavController().navigate(R.id.action_feedFragment_to_postFragment,
+                        Bundle().apply {
+                            longArg = post.id
+                        })
+                }
+
+
                 override fun onLikeListener(post: Post) {
                     viewModel.likeById(post.id)
                 }
@@ -70,6 +80,7 @@ class FeedFragment : Fragment() {
                         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(post.videoLink)))
                     }
                 }
+
             }
         )
         binding.list.adapter = adapter

@@ -11,12 +11,12 @@ import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.FragmentNewPostBinding
 import ru.netology.nmedia.model.util.AndroidUtils.hideKeyboard
-import ru.netology.nmedia.model.util.StringArg
+import ru.netology.nmedia.model.util.CompanionArg
 import ru.netology.nmedia.viewmodel.PostViewModel
 
 class NewPostFragment : Fragment() {
     companion object {
-        var Bundle.textArg: String? by StringArg
+        var Bundle.textArg: String? by CompanionArg.StringArg
     }
 
     private val viewModel: PostViewModel by viewModels(
@@ -37,7 +37,12 @@ class NewPostFragment : Fragment() {
         arguments?.textArg
             ?.let(binding.edit::setText)
 
-
+        binding.cancel.setOnClickListener {
+            viewModel.cancelEditing()
+            binding.edit.clearFocus()
+            findNavController().navigateUp()
+            it.hideKeyboard()
+        }
         binding.ok.setOnClickListener {
             if (binding.edit.text.isBlank()) {
                 Toast.makeText(activity, R.string.error_empty_content, Toast.LENGTH_SHORT).show()

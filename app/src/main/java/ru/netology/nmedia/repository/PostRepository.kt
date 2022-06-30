@@ -12,6 +12,5 @@ interface PostRepository {
     fun save(post: Post)
     fun cancelEditing(post: Post)
     fun isVideo (post: Post): Boolean
-    companion object {
-    }
+
 }

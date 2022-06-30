@@ -17,8 +17,8 @@ class PostRepositoryInMemoryImpl: PostRepository {
         Post(
             id = index + 1L,
             author = "Автор",
-            content = "Текст поста $index",
-            published = "Дата поста $index",
+            content = "Привет, это новая Нетология! Когда-то Нетология начиналась с интенсивов по онлайн-маркетингу. $index",
+            published = "1$index августа 202$index",
             likes = index+100,
             likedByMe = false,
             countShare = 0,
