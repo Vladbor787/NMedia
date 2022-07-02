@@ -14,5 +14,7 @@
     <string name="Save">Сохранить</string>
     <string name="addPost">Добавить пост</string>
     <string name="more">More</string>
-    <string name="video_link">Ссылка на видеоk</string>>
+    <string name="video_link">Ссылка на видеоk</string>
+    <string name="error_empty_content">пустое содержимое</string>>
+    <string name="icon_smile">улыбка</string>>
 </resources>
