@@ -38,7 +38,7 @@ class PostFragment : Fragment(){
                     like.text = formatCounts(post.likes)
                     viewers.text = formatCounts(post.countView)
                     share.text = formatCounts(post.countShare)
-                    like.isChecked = post.likedByMe
+                    //like.isChecked = post.likedByMe
 
                     if (post.videoLink != null) {
                         videoLink.setImageResource(R.drawable.background1)
